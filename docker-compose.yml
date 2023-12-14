@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app-service:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "500:500" 
+    
+  svm-service:
+    build:
+      context: ./svm
+      dockerfile: Dockerfile
+    ports:
+      - "510:510"
+    volumes:
+      - svm-model:/app/models  
+  vgg19-service:
+    build:
+      context: ./vgg19
+      dockerfile: Dockerfile
+    ports:
+      - "800:800"
+    volumes:
+      - vgg19-model:/app/models 
+volumes:
+  svm-model: 
